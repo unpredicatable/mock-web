@@ -7,11 +7,12 @@ import axios from "axios";
 axios.interceptors.response.use(function (response) {
     var data = response.data;
 
-    // if (data.success === true ) {
+    if (data.code === 1 ) {  //返回成功
         return data;
-    // } else {
-    //     return Promise.reject(data);
-    // }
+    } else {
+        message.error(data.msg);
+        return Promise.reject(data);
+    }
 }, function (error) {
     message.error("网络错误");
     return Promise.reject(error);

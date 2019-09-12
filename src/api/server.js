@@ -6,6 +6,9 @@ export default {
     },
     register (param){
         return  request.post('http://127.0.0.1:8888/register', param)
+    },
+    login (param){
+        return  request.post('http://127.0.0.1:8888/login', param)
     }
 }
 
