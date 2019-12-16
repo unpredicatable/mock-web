@@ -37,7 +37,7 @@ const TextArea = Input.TextArea
                }
                this.handleCancel()
                let data = values
-               console.log(data)
+               console.log(data, this.props.userinfo)
                // APIS.addProject({
                //     ...data
                // }).then(res => {

@@ -29,7 +29,7 @@ import {Switch, Route} from 'react-router-dom'
                                 // component={}
                           />
                       </Switch>
-                     <Project ></Project>
+                     <Project userinfo={this.props.userinfo}></Project>
 
                   </div>
               </div>

@@ -74,6 +74,7 @@ class Project extends Component{
                   {
                       this.state.visible
                       ? <CreateProject
+                              userinfo={this.props.userinfo}
                               modalParams={this.state.modalParams}
                               toggleVisible={this.toggleVisible}
                               handleConfirmCb={this.handleConfirmCb}
