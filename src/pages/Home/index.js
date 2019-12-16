@@ -1,22 +1,29 @@
+
 import React, { Component } from 'react'
+import styles from './index.module.scss'
 
+class Home extends Component{
+    constructor (props) {
+        super(props)
+        this.state = {
 
-  class Home extends Component{
-       constructor (props) {
-            super(props)
-            this.state = {
-
-            }
-       }
-
-       render () {
-           return ( 
-              <div>
-                  home
-              </div>
-           )
         }
+    }
+
+    componentWillMount(){
+    }
+
+    render () {
+        return (
+            <div className={styles.home}>
+
+            </div>
+        )
+    }
 
 }
 
-export default Home
+
+
+export default  Home;
+

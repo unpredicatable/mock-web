@@ -1,0 +1,81 @@
+
+@import "../../styles/var";
+
+.addBtn{
+    color: $brand;
+    font-size: 40px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+
+.myproject{
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 40px;
+  &.active{
+    border-bottom: 3px solid $brand;
+  }
+}
+
+
+.projects{
+  margin-top: 20px;
+  .copy{
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    cursor: pointer;
+    color: #999;
+  }
+    .projectitem{
+        border: 1px solid #e6e6e6;
+        width: 300px;
+        border-radius: 5px;
+        height: 200px;
+        box-shadow: 0 0 5px #ccc;
+        position: relative;
+        overflow: hidden;
+        padding: 20px;
+        word-break: break-all;
+
+
+    .operate{
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            padding: 5px 0;
+            background: rgba(0,0,0,0.6);
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: space-around;
+            span{
+                cursor: pointer;
+                display: inline-block;
+                color: #fff;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                box-sizing: content-box;
+                border: 1px solid #fff;
+                border-radius: 50%;
+                text-align: center;
+                margin: 0 10px;
+            }
+            i{
+              font-size: 20px;
+            }
+        }
+        &:hover{
+            .operate{
+                bottom: 0;
+            }
+        }
+    }
+
+}

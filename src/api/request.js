@@ -3,11 +3,14 @@
 import { message } from "antd";
 import axios from "axios";
 
+
+// axios.defaults.withCredentials = true
+
 // 公用请求拦截
 axios.interceptors.response.use(function (response) {
     var data = response.data;
 
-    if (data.code === 1 ) {  //返回成功
+    if (data.code === 0 ) {  //返回成功
         return data;
     } else {
         message.error(data.msg);
@@ -27,7 +30,6 @@ export default {
     },
     post: function post(url, param) {
         var extraParam = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-        console.log(param, 'param')
         return axios.post(url, param, extraParam);
     }
 };

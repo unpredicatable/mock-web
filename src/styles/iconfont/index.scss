@@ -3,13 +3,14 @@
 
 @font-face {
   font-family: 'iconfont';  /* project id 1407168 */
-  src: url('//at.alicdn.com/t/font_1407168_jxl6570cfv.eot');
-  src: url('//at.alicdn.com/t/font_1407168_jxl6570cfv.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1407168_jxl6570cfv.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1407168_jxl6570cfv.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1407168_jxl6570cfv.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1407168_jxl6570cfv.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1407168_wnguq49njlb.eot');
+  src: url('//at.alicdn.com/t/font_1407168_wnguq49njlb.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1407168_wnguq49njlb.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1407168_wnguq49njlb.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1407168_wnguq49njlb.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1407168_wnguq49njlb.svg#iconfont') format('svg');
 }
+
 
 // 自定义
 .iconfont{
@@ -30,3 +31,27 @@
   content:'\e623';
 }
 
+.icon-email:before{
+  content: '\e908'
+}
+
+
+.icon-mobile:before{
+  content: '\e62f'
+}
+
+.icon-add:before{
+  content: '\e60d'
+}
+.icon-shanchu:before{
+  content: '\e635'
+}
+
+.icon-bianji:before{
+  content: '\e630'
+}
+
+
+.icon-fuzhi:before{
+  content: '\e632'
+}

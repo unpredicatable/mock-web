@@ -1,0 +1,33 @@
+@import "../../styles/var";
+
+
+.header{
+    background-color: $brand;
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+    float: left;
+    height: 100%;
+    width: 60px;
+    position: relative;
+    text-align: center;
+    .menu{
+        margin-top: 20px;
+        font-weight: 500;
+        font-size: 18px;
+        .menuitem{
+            cursor: pointer;
+        }
+    }
+    .userinfo{
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+        left: 0;
+        right: 0;
+        .logout{
+            font-weight: 500;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 @import './iconfont/index.scss';
-
+@import './var';
 
 body {
   margin: 0;
@@ -9,6 +9,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+  min-width: 1000px;
+  color: #1a2a3a!important;
 }
 
 code {
@@ -16,3 +18,7 @@ code {
   monospace;
 }
 
+
+#root{
+  height: 100%;
+}

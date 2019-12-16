@@ -2,7 +2,15 @@ import React, {Component} from 'react';
 import {Form, Input,Button, message } from 'antd'
 import styles from './index.module.scss'
 import APIS from 'ROOT/api/server.js'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import {setUserinfo} from 'ROOT/store/reducer/login'
+
+const md5 = require('md5')
+
 const FormItem = Form.Item
+
+
 
 
 class Login extends Component {
@@ -31,9 +39,14 @@ class Login extends Component {
             if(err){
                 return
             }
+
+
             if(isRegister){
                 APIS.register(
-                    values
+                    {
+                        ...values,
+                        passWord: md5(values.passWord)
+                    }
                 ).then(res => {
                     message.success('注册成功,请登录')
                     this.setState({
@@ -42,16 +55,21 @@ class Login extends Component {
                 })
             }else{
                 APIS.login(
-                    values
+                    {
+                        ...values,
+                        passWord: md5(values.passWord)
+                    }
                 ).then(res => {
                     message.success('登录成功')
-                    this.props.history.push('/home')
+                    // userInfo 存入store
+                    this.props.setUserinfo({userInfo: res.userInfo})
+                     this.props.history.push('/home')
                 },err => {
                     // message.error('账号或密码错误，请重试')
                 })
             }
             // console.log(values)
-            
+
         })
 
 
@@ -65,66 +83,130 @@ class Login extends Component {
         })
     }
 
+    toLogin = () => {
+        this.setState({
+            isRegister: false
+        })
+    }
+
     render() {
         let {isRegister} = this.state
         let {getFieldDecorator} = this.props.form
         return (
-            <div className={styles['login']}>
+            <div className={styles['wrap']} >
+                <div className={styles['login']} >
 
-                <Form onSubmit={this.handleSubmit} className={styles["login-form"]}>
+                    <Form onSubmit={this.handleSubmit} className={styles["login-form"]}>
 
-                    <FormItem >
-                        {
-                            getFieldDecorator('userName', {
-                                rules:[
-                                    {
-                                        required: true,
-                                        message: '请输入账号',
-                                    }
-                                ]
-                            })(<Input placeholder={'请输入账号'} prefix={<i className={'iconfont icon-user'}></i>}/>)
-                        }
-                    </FormItem>
-
-                    <FormItem>
-                        {
-                            getFieldDecorator('passWord', {
-                                rules:[
-                                    {
-                                        required: true,
-                                        message: '请输入密码',
-                                    }
-                                ]
-                            })(<Input
-                                type="password"
-                                placeholder={'请输入密码'}
-                                prefix={<i className={'iconfont icon-password'}></i>}
-                            />)
-                        }
-                    </FormItem>
-
-                    <FormItem  className={styles['login-form-button']} >
-                        <Button type="primary" htmlType="submit" block >
+                        <FormItem >
                             {
-                                isRegister
-                                ? '注册'
-                                : '登陆'
+                                getFieldDecorator('userName', {
+                                    rules:[
+                                        {
+                                            required: true,
+                                            message: '请输入账号',
+                                        }
+                                    ]
+                                })(<Input
+                                    placeholder={'请输入账号'}
+                                    prefix={<i className={'iconfont icon-user'}
+                                    ></i>}/>)
                             }
-                        </Button>
-                    </FormItem>
+                        </FormItem>
 
-                    <FormItem  >
-                        <span className={styles['to-register']} onClick={this.toRegister}>尚未有账号， 去注册～</span>
-                    </FormItem>
+                        <FormItem>
+                            {
+                                getFieldDecorator('passWord', {
+                                    rules:[
+                                        {
+                                            required: true,
+                                            message: '请输入密码',
+                                        }
+                                    ]
+                                })(<Input
+                                    type="password"
+                                    placeholder={'请输入密码'}
+                                    prefix={<i className={'iconfont icon-password'}></i>}
+                                />)
+                            }
+                        </FormItem>
 
-                </Form>
+                        {
+                            isRegister
+                            ?   <>
+                                    <FormItem>
+                                        {
+                                            getFieldDecorator('tel', {
+                                                rules:[
+                                                    {
+                                                        required: true,
+                                                        message: '请输入手机号',
+                                                    }
+                                                ]
+                                            })(<Input
+                                                placeholder={'请输入手机号'}
+                                                prefix={<i className={'iconfont icon-mobile'}></i>}
+                                            />)
+                                        }
+                                    </FormItem>
+                                    <FormItem>
+                                        {
+                                            getFieldDecorator('email', {
+                                                rules:[
 
-                
+                                                ]
+                                            })(<Input
+                                                placeholder={'请输入邮箱'}
+                                                prefix={<i className={'iconfont icon-email'}></i>}
+                                            />)
+                                        }
+                                    </FormItem>
+                                </>
+                            :   null
+                        }
+
+                        <FormItem  className={styles['login-form-button']} >
+                            <Button type="primary" htmlType="submit" block >
+                                {
+                                    isRegister
+                                    ? '注册'
+                                    : '登陆'
+                                }
+                            </Button>
+                        </FormItem>
+
+                        {
+                            isRegister
+                            ?   <FormItem  >
+                                    <span className={styles['to-register']} onClick={this.toLogin}>已账号， 去登录～</span>
+                                </FormItem>
+                            :   <FormItem  >
+                                    <span className={styles['to-register']} onClick={this.toRegister}>尚未有账号， 去注册～</span>
+                                </FormItem>
+                        }
 
 
+
+                    </Form>
+
+                </div>
             </div>
         );
     }
 }
 
-export default Form.create()(Login);
+
+const mapStateToProps = state => {
+    return {
+    }
+  }
+
+
+const mapActions = ()=> {
+    return {
+        setUserinfo
+    }
+}
+
+
+export default connect(mapStateToProps, mapActions())(Form.create()( withRouter(Login)));
